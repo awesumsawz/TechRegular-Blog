@@ -1,11 +1,8 @@
 .posts-list {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	gap: $padding-lr;
 	img {
 		object-fit: cover;
 		height: auto;
-		max-height: 300px;
+		height: 200px;
 		width: 100%;
 	}
 }

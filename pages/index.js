@@ -25,7 +25,7 @@ export default function Posts({ posts }) {
   console.log(posts);
 
   return (
-    <div className="posts-list">
+    <div className="posts-list grid three-wide">
       {posts.map(post => (
         <PostCard key={post.sys.id} post={post} />
       ))}
