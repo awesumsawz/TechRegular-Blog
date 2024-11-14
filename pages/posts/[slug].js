@@ -25,13 +25,14 @@ export const getStaticPaths = async () => {
   }
 }
 
-export async function getStaticProps( params ) {
+export async function getStaticProps({ params }) {
   const res = await client.getEntries({ 
     content_type: 'blogPost', 
     'fields.slug': params.slug
   })
   return {
-    props: { post: res.items[0] }
+    props: { post: res.items[0] },
+    revalidate: 1 /* TODO: Update to 30 before deploy */
   }
 }
 
