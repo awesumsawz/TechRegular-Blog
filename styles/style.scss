@@ -1,4 +1,8 @@
-@import 'globals.scss';
+// settings
+@import 'settings.variables.scss';
+@import 'settings.fonts.scss';
+@import 'settings.layout.scss';
+@import 'settings.typography.scss';
 
 // pages
 @import 'page.home.scss';

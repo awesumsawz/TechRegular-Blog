@@ -1,0 +1,43 @@
+// colors
+$yellow: #F4E640;
+$purple: #d400bf;
+$blue: #0088be;
+$off-black: #111;
+$true-black: #000;
+$off-white: #ddd;
+$true-white: #fff;
+$color-overlay: rgba(0,0,0,0.5);
+
+// fonts
+$font-xlarge: 44px;
+$font-large: 36px;
+$font-medium: 24px;
+$font-small: 20px;
+$font-xsmall: 16px;
+
+// padding
+$padding-lr: 20px;
+$padding-tb: 80px;
+$padding-pack: $padding-tb $padding-lr;
+
+// Media Query Widths
+$content-width-tablet-max: 900px + ($padding-lr*2);
+$content-width-mobile-max: 500px + ($padding-lr*2);
+$content-width-desktop-min: $content-width-tablet-max + 1;
+$content-width-tablet-min: $content-width-mobile-max +1;
+$content-width-mobile-min: 340px + ($padding-lr*2);
+
+// Media Queries
+$screen-desktop: "only screen and (min-width: " + $content-width-desktop-min + ")"; 
+$screen-tablet: "only screen and (max-width: " + $content-width-tablet-max + ")";
+$screen-mobile: "only screen and (max-width: " + $content-width-mobile-max + ")";
+$screen-xmobile: "only screen and (max-width: " + $content-width-mobile-min + ")";
+
+// Border Radius
+$border-radius-default: 0;
+$border-radius-round: 15px;
+
+// transition
+$transition-slow: all 1s ease;
+$transition-default: all .5s ease;
+$transition-fast: all .25s ease;
