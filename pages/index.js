@@ -9,12 +9,16 @@ export async function getStaticProps() {
 
   const res = await client.getEntries({ content_type: 'blogPost'})
 
-  return {
-    props: {
-      posts: res.items
-    }
-  }
+  const sortedPosts = res.items.sort((a, b) => {
+    const dateA = new Date(a.fields.date)
+    const dateB = new Date(b.fields.date)
+    return dateB - dateA
+  })
 
+  return {
+    props: { posts: sortedPosts },
+    revalidate: 1 /* TODO: Update to 30 before deploy */
+  }
 }
 
 export default function Posts({ posts }) {
