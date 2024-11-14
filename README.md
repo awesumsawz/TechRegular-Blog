@@ -1,9 +1,7 @@
-This is the Next.js starter site (and course files) for the Next.js & Contentful tutorial by the Net Ninja.
+# [Work in Progress] Blog for Tech Regular
 
-## Getting Started
+## Current Issue(s):
 
-To use the starter project, run the following in a terminal:
-
-```bash
-npx create-next-app [your-site-name] -e https://github.com/iamshaunjp/next-contentful/tree/lesson-1-starter-site
-```
+I have built out up to spitting PostContent out onto the page. However, things are not working as expected. I have two issues (that I'm currently aware of): 
+1) The images embeded within my rich text coming from contentful are not being spat out onto the page
+2) The root blog post list is clickable and opens the correct URL w/ slug attached. However, the content on the page is coming from JUST the most recently published post. I need to figure out how to get the content from other post as well. 

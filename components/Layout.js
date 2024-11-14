@@ -4,13 +4,12 @@ export default function Layout({ children }) {
   return (
     <div className="layout">
       <header>
-        <Link href="/">
+        <Link legacyBehavior href="/">
           <a>
             <h1>
-              <span>Just Add</span>
-              <span>Marmite</span>
+              <span>TechRegular</span>
             </h1>
-            <h2>Spread The Joy</h2>
+            <h2>Tech on the Reg</h2>
           </a>
         </Link>
       </header>
@@ -20,7 +19,7 @@ export default function Layout({ children }) {
       </div>
 
       <footer>
-        <p>Copyright 2021 Just Add Marmite :)</p>
+        <p>Copyright 2024 TechRegular</p>
       </footer>
     </div>
   )

@@ -1,0 +1,32 @@
+.card {
+	background-color: white;
+	display: flex;
+	flex-direction: column;
+	.content {
+		padding: 20px;
+		display: flex;
+		flex-direction: column;
+		flex-grow: 1;
+	}
+	.date {
+		font-size: 16px;
+		font-style: italic;
+	}
+	.info {
+		flex-grow: 1;
+		a {
+			text-decoration: none;
+			color: inherit;
+			transition: all .5s ease;
+			&:hover {
+				color: rgb(212, 0, 191);
+			}
+		}
+	}
+	.actions {
+		margin-top: auto;
+		a:hover {
+			background-color: #0088be;
+		}
+	}
+}
