@@ -1,9 +1,6 @@
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import { BLOCKS, INLINES } from "@contentful/rich-text-types";
-import { getImageProps } from 'next/image'
 import { FormatDate } from '../utils/FormatDate'
-
-import Image from 'next/image'
 
 
 const renderOptions = {
