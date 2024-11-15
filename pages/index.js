@@ -22,8 +22,6 @@ export async function getStaticProps() {
 }
 
 export default function Posts({ posts }) {
-  console.log(posts);
-
   return (
     <div className="posts-list grid three-wide">
       {posts.map(post => (
