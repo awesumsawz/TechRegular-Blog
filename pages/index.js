@@ -17,7 +17,7 @@ export async function getStaticProps() {
 
   return {
     props: { posts: sortedPosts },
-    revalidate: 1 /* TODO: Update to 30 before deploy */
+    revalidate: 30
   }
 }
 

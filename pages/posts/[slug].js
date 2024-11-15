@@ -32,7 +32,7 @@ export async function getStaticProps({ params }) {
   })
   return {
     props: { post: res.items[0] },
-    revalidate: 1 /* TODO: Update to 30 before deploy */
+    revalidate: 30
   }
 }
 
