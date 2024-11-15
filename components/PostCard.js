@@ -12,6 +12,7 @@ export default function PostCard({ post }) {
 					src={'https:' + heroImage.fields.file.url}
 					width={heroImage.fields.file.details.image.width}
 					height={heroImage.fields.file.details.image.height}
+					alt={heroImage.fields.description}
 				/>
 			</div>
 			<div className="content">
