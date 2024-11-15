@@ -1,4 +1,5 @@
 import '../styles/style.scss'
+import Script from 'next/script';
 import Layout from '../components/Layout'
 
 function MyApp({ Component, pageProps }) {
@@ -13,6 +14,20 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <Layout>
+			<Script
+        src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_KEY}`}
+        strategy="afterInteractive"
+      />
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '${GOOGLE_ANALYTICS_KEY}', {
+            page_path: window.location.pathname,
+          });
+        `}
+      </Script>
       <Component {...pageProps} />
     </Layout>
   )
