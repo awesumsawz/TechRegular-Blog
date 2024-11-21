@@ -17,6 +17,3 @@ Then install the dependencies and spin up the site
 npm install
 npm run dev
 ```
-
-## Current Issue(s):
-- The root blog post list is clickable and opens the correct URL w/ slug attached. However, the content on the page is coming from JUST the most recently published post. I need to figure out how to get the content from other post as well. 
