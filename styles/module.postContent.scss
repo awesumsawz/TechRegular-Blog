@@ -11,4 +11,45 @@
 			}
 		}
 	}
+	.contentWrapper {
+		display: grid;
+		grid-template-columns: 1fr 300px;
+		gap: 20px;
+		@media #{$screen-tablet} {
+			grid-template-columns: 1fr;
+			gap: 0;
+		}
+		.sidebar {
+			order: 2;
+			@media #{$screen-tablet} {
+				order:1;
+			}
+			.disclaimer p {
+				font-size: 16px;
+				font-style: italic;
+				color: $blue;
+			}
+			.body {
+				@media #{$screen-tablet} {
+					display: none;
+				}
+				a:hover {
+					color: $purple;
+				}
+				a::after {
+					content: " ›";
+				}
+			}
+		}
+		.content {
+			order: 1;
+			@media #{$screen-tablet} {
+				order:2;
+			}
+			.blurb p {
+				font-size: 16px;
+				font-style: italic;
+			}
+		}
+	}
 }

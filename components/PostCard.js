@@ -8,12 +8,14 @@ export default function PostCard({ post }) {
 	return (
 		<div className="card">
 			<div className="featured">
-				<Image 
-					src={'https:' + heroImage.fields.file.url}
-					width={heroImage.fields.file.details.image.width}
-					height={heroImage.fields.file.details.image.height}
-					alt={heroImage.fields.description}
-				/>
+				<Link href={'/posts/' + slug}>
+					<Image 
+						src={'https:' + heroImage.fields.file.url}
+						width={heroImage.fields.file.details.image.width}
+						height={heroImage.fields.file.details.image.height}
+						alt={heroImage.fields.description}
+					/>
+				</Link>
 			</div>
 			<div className="content">
 				<div className="info">
