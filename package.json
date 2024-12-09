@@ -10,6 +10,7 @@
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^16.0.0",
     "@contentful/rich-text-types": "^17.0.0",
+    "axios": "^1.7.9",
     "contentful": "^11.2.1",
     "next": "^15.0.3",
     "postcss": "^8.4.49",
