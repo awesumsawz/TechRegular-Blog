@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { scanURL, getScanResult } from "../utils/urlScan";
 
 export default function URLScanPage() {
   const [url, setUrl] = useState("");
@@ -13,22 +12,50 @@ export default function URLScanPage() {
     setScanResult(null);
 
     try {
-      const scanResponse = await scanURL(url);
-      const uuid = scanResponse.uuid;
+      // Start the URL scan by calling the API route
+      const response = await fetch("/api/urlscan", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ url }),
+      });
 
-      // Optionally fetch the result after a delay
-      setTimeout(async () => {
-        const result = await getScanResult(uuid);
-        setScanResult(result);
-        setLoading(false);
-      }, 5000); // Adjust delay as needed
+      if (!response.ok) {
+        throw new Error("Failed to start scan");
+      }
+
+      const { uuid } = await response.json();
+
+      // Start polling for the scan result
+      pollScanResult(uuid);
     } catch (err) {
       setError("Failed to scan the URL. Please try again.");
       setLoading(false);
     }
   };
 
-  return (
+  const pollScanResult = async (uuid) => {
+    try {
+      const resultResponse = await fetch(`/api/urlscan?uuid=${uuid}`);
+
+      if (resultResponse.status === 202) {
+        // Scan is still pending, wait and poll again
+        setTimeout(() => pollScanResult(uuid), 5000); // Retry after 5 seconds
+      } else if (resultResponse.ok) {
+        const result = await resultResponse.json();
+        setScanResult(result);
+        setLoading(false);
+      } else {
+        throw new Error("Failed to fetch scan result");
+      }
+    } catch (err) {
+      setError("Failed to fetch scan result. Please try again.");
+      setLoading(false);
+    }
+  };
+
+	return (
     <div style={{ padding: "20px" }}>
       <h1>URL Scanner</h1>
       <input
@@ -47,7 +74,29 @@ export default function URLScanPage() {
       {scanResult && (
         <div>
           <h2>Scan Result</h2>
-          <pre>{JSON.stringify(scanResult, null, 2)}</pre>
+          <p>URL: {scanResult.page.url}</p>
+          <p>Status: {scanResult.stats.status}</p>
+          <p>IP Address: {scanResult.page.ip}</p>
+          <p>Domain: {scanResult.page.domain}</p>
+          {scanResult.request && scanResult.request.method && (
+            <p>Method: {scanResult.request.method}</p>
+          )}
+          <p>Response Headers:</p>
+					{scanResult.response && Object.entries(scanResult.response.headers).map(([key, value]) => (
+						<p>{key}: {value}</p>
+					))}
+					<p>Request Headers:</p>
+					{scanResult.request && Object.entries(scanResult.request.headers).map(([key, value]) => (
+						<p key={key}>{key}: {value}</p>
+					))}
+					<p>Query Parameters:</p>
+					{scanResult.page && Array.from(new URL(scanResult.page.url).searchParams).map(([key, value]) => (
+						<p>{key}: {value}</p>
+					))}
+					<p>Redirections:</p>
+					{scanResult.page && Array.from(scanResult.page.redirects).map((redirect, index) => (
+						<p>{index + 1}: {redirect}</p>
+					))}
         </div>
       )}
     </div>
