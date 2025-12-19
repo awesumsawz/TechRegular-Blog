@@ -1,20 +1,13 @@
-import { createClient } from 'contentful'
 import PostContent from '../../components/PostContent'
-
-const client = createClient({
-  accessToken: process.env.CONTENTFUL_ACCESS_KEY,
-  space: process.env.CONTENTFUL_SPACE_ID,
-})
+import { getAllPostSlugs, getPostBySlug } from '../../lib/localData'
 
 export const getStaticPaths = async () => {
-  const res = await client.getEntries({ 
-    content_type: 'blogPost'
-  })
+  const slugs = getAllPostSlugs()
 
-  const paths = res.items.map(item => {
+  const paths = slugs.map(slug => {
     return {
-      params: { 
-        slug: item.fields.slug 
+      params: {
+        slug
       }
     }
   })
@@ -26,12 +19,10 @@ export const getStaticPaths = async () => {
 }
 
 export async function getStaticProps({ params }) {
-  const res = await client.getEntries({ 
-    content_type: 'blogPost', 
-    'fields.slug': params.slug
-  })
+  const post = getPostBySlug(params.slug)
+
   return {
-    props: { post: res.items[0] },
+    props: { post },
     revalidate: 30
   }
 }

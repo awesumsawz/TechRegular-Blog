@@ -1,6 +1,7 @@
 import { FormatDate } from '../utils/FormatDate'
 import Link from 'next/link'
 import Image from 'next/image'
+import { getLocalImagePath } from '../lib/localData'
 
 export default function PostCard({ post }) {
 	const { title, slug, date, authorName, heroImage } = post.fields
@@ -9,8 +10,8 @@ export default function PostCard({ post }) {
 		<div className="card">
 			<div className="featured">
 				<Link href={'/posts/' + slug}>
-					<Image 
-						src={'https:' + heroImage.fields.file.url}
+					<Image
+						src={getLocalImagePath(heroImage)}
 						width={heroImage.fields.file.details.image.width}
 						height={heroImage.fields.file.details.image.height}
 						alt={heroImage.fields.description}

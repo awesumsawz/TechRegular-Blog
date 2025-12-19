@@ -1,6 +1,7 @@
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import { BLOCKS, INLINES } from "@contentful/rich-text-types";
 import { FormatDate } from '../utils/FormatDate'
+import { getLocalImagePath } from '../lib/localData'
 
 
 const renderOptions = {
@@ -41,7 +42,7 @@ const renderOptions = {
 			// render the EMBEDDED_ASSET as you need
 			return (
 				<img
-				src={`https://${node.data.target.fields.file.url}`}
+				src={getLocalImagePath(node.data.target)}
 				height={node.data.target.fields.file.details.image.height}
 				width={node.data.target.fields.file.details.image.width}
 				alt={node.data.target.fields.description}
@@ -54,11 +55,11 @@ const renderOptions = {
 
 
 
-export default function PostContent({ post }) {	
+export default function PostContent({ post }) {
 	const { title, date, authorName, heroImage, blurbContent, sidebarContent, postContent } = post.fields
 
 	const style = {
-		backgroundImage: `url(https:${heroImage.fields.file.url})`,
+		backgroundImage: `url(${getLocalImagePath(heroImage)})`,
 	}
 
 	return (
