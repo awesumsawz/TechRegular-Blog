@@ -1,15 +1,10 @@
-import { createClient } from 'contentful'
 import PostCard from '../components/PostCard'
+import { getAllPosts } from '../lib/localData'
 
 export async function getStaticProps() {
-  const client = createClient({
-    accessToken: process.env.CONTENTFUL_ACCESS_KEY,
-    space: process.env.CONTENTFUL_SPACE_ID,
-  })
+  const posts = getAllPosts()
 
-  const res = await client.getEntries({ content_type: 'blogPost'})
-
-  const sortedPosts = res.items.sort((a, b) => {
+  const sortedPosts = posts.sort((a, b) => {
     const dateA = new Date(a.fields.date)
     const dateB = new Date(b.fields.date)
     return dateB - dateA
@@ -25,7 +20,7 @@ export default function Posts({ posts }) {
   return (
     <div className="posts-list grid three-wide">
       {posts.map(post => (
-        <PostCard key={post.sys.id} post={post} />
+        <PostCard key={post.id || post.fields.slug} post={post} />
       ))}
     </div>
   )
