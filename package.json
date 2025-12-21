@@ -8,16 +8,19 @@
     "start": "next start"
   },
   "dependencies": {
-    "@contentful/rich-text-react-renderer": "^16.0.0",
-    "@contentful/rich-text-types": "^17.0.0",
-    "axios": "^1.7.9",
-    "contentful": "^11.2.1",
-    "next": "^15.0.3",
-    "postcss": "^8.4.49",
+    "@contentful/rich-text-react-renderer": "^16.1.6",
+    "@contentful/rich-text-types": "^17.2.5",
+    "axios": "^1.13.2",
+    "next": "^15.5.9",
+    "postcss": "^8.5.6",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
+  "optionalDependencies": {
+    "contentful": "^11.10.1",
+    "dotenv": "^17.2.3"
+  },
   "devDependencies": {
-    "sass": "^1.80.7"
+    "sass": "^1.97.0"
   }
 }

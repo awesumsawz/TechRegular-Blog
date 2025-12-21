@@ -1,10 +1,3 @@
 module.exports = {
-	images: {
-		remotePatterns: [
-			{
-				protocol: 'https',
-				hostname: 'images.ctfassets.net',
-			},
-		],
-	},
+	// Using local images from public/images directory
 };

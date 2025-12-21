@@ -32,7 +32,10 @@ yarn-error.log*
 
 # vercel
 .vercel
-package-lock.json
 
+# lock files (using bun.lock)
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
 
 .docs/
